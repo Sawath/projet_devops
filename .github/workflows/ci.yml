@@ -26,6 +26,10 @@ jobs:
           pip install -r requirements.txt
           pip install pytest flake8
 
+      - name: 🧹 Set PYTHONPATH
+        run: |
+          echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+
       - name: 🧪 Run Pytest
         run: |
           pytest
