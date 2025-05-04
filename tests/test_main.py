@@ -3,9 +3,7 @@ import os
 from fastapi.testclient import TestClient
 from main import app  # Ce import doit être après le sys.path.append
 
-# Ajouter sys.path après les imports pour éviter E402
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 
 client = TestClient(app)
 
