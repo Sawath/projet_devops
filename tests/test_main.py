@@ -1,12 +1,14 @@
 import sys
 import os
 from fastapi.testclient import TestClient
-from main import app
 
-# Chemin ajouté après les imports pour éviter l'erreur E402
+# Ajouter sys.path après les imports pour éviter E402
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from main import app  # Ce import doit être après le sys.path.append
+
 client = TestClient(app)
+
 
 # Test pour recuperer la liste des items
 def test_get_items():
@@ -18,7 +20,8 @@ def test_get_items():
 # Test pour recuperer un item spécifique
 def test_get_item():
     client.post(
-        "/items/", json={"id": 1, "name": "Item1", "price": 10.0, "in_stock": True}
+        "/items/",
+        json={"id": 1, "name": "Item1", "price": 10.0, "in_stock": True}
     )
     response = client.get("/items/1")
     assert response.status_code == 200
@@ -33,7 +36,8 @@ def test_get_item():
 # Test pour creer un item
 def test_create_item():
     response = client.post(
-        "/items/", json={"id": 2, "name": "Item2", "price": 20.0, "in_stock": False}
+        "/items/",
+        json={"id": 2, "name": "Item2", "price": 20.0, "in_stock": False}
     )
     assert response.status_code == 200
     assert response.json() == {
