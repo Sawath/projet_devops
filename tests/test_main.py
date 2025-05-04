@@ -1,19 +1,19 @@
-import sys
 import os
+import sys
+from fastapi.testclient import TestClient
+from main import app  # le fichier main.py doit être à la racine du projet
 
-# Ajouter sys.path.append tout en haut
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from fastapi.testclient import TestClient
-from main import app  # Ce import doit être après le sys.path.append
-
 client = TestClient(app)
+
 
 # Test pour recuperer la liste des items
 def test_get_items():
     response = client.get("/items")
     assert response.status_code == 200
     assert isinstance(response.json(), list)
+
 
 # Test pour recuperer un item spécifique
 def test_get_item():
@@ -30,6 +30,7 @@ def test_get_item():
         "in_stock": True,
     }
 
+
 # Test pour creer un item
 def test_create_item():
     response = client.post(
@@ -43,6 +44,7 @@ def test_create_item():
         "price": 20.0,
         "in_stock": False,
     }
+
 
 # Test pour modifier les items
 def test_update_item():
@@ -58,12 +60,13 @@ def test_update_item():
         "in_stock": True,
     }
 
+
 # Test pour supprimer un item
 def test_delete_item():
     response = client.delete("/items/1")
     assert response.status_code == 200
     assert response.json() == {"message": "Item deleted"}
 
-    # Verifie que l'Item a été bien supprimé
+    # Vérifie que l'item a été bien supprimé
     response = client.get("/items/1")
     assert response.status_code == 404
