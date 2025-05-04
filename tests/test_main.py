@@ -1,10 +1,10 @@
 import sys
 import os
-from fastapi.testclient import TestClient
 
 # Ajouter sys.path.append tout en haut
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from fastapi.testclient import TestClient
 from main import app  # Ce import doit être après le sys.path.append
 
 client = TestClient(app)
