@@ -1,11 +1,10 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from fastapi.testclient import TestClient
 from main import app
-
 
 
 client = TestClient(app)
@@ -21,8 +20,7 @@ def test_get_items():
 # Test pour recuperer un item spécifique
 def test_get_item():
     client.post(
-        "/items/",
-        json={"id": 1, "name": "Item1", "price": 10.0, "in_stock": True}
+        "/items/", json={"id": 1, "name": "Item1", "price": 10.0, "in_stock": True}
     )
     response = client.get("/items/1")
     assert response.status_code == 200
@@ -37,8 +35,7 @@ def test_get_item():
 # Test pour creer un item
 def test_create_item():
     response = client.post(
-        "/items/",
-        json={"id": 2, "name": "Item2", "price": 20.0, "in_stock": False}
+        "/items/", json={"id": 2, "name": "Item2", "price": 20.0, "in_stock": False}
     )
     assert response.status_code == 200
     assert response.json() == {
