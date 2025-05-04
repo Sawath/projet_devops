@@ -5,7 +5,6 @@ from main import app  # le fichier main.py doit être à la racine du projet
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-
 client = TestClient(app)
 
 
