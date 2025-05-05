@@ -28,3 +28,7 @@ jobs:
       run: |
         export PYTHONPATH=.
         pytest
+
+    - name: Run Bandit security audit
+      run: |
+        bandit -r . -v -q  # -r pour récursif, -v pour verbose, -q pour quiet (moins de bruit)
