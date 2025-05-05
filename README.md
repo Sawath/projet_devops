@@ -60,7 +60,7 @@ Le projet est organisé de la manière suivante :
 
     ```bash
     python -m venv .venv
-    .\.venv\Scripts\activate   # Sur Windows
+    venv\Scripts\activate   # Sur Windows
     ```
 
 2. Installe les dépendances :
