@@ -10,7 +10,7 @@ L'API implémente les fonctionnalités suivantes :
 
 * **Gestion des Items :**
     * Création, lecture, mise à jour et suppression d'items.
-    * Chaque item possède les attributs : `id` (entier), `name` (chaîne), `price` (float), `in_stock` (booléen).
+    * Chaque item possède les attributs : `id` (entier), `name` (str), `price` (float), `in_stock` (booléen).
 * **Endpoints :**
     * `GET /items` : Liste tous les items.
     * `GET /items/{id}` : Affiche un item spécifique.
@@ -20,7 +20,7 @@ L'API implémente les fonctionnalités suivantes :
 
 * **Gestion des Users :**
     * Création, lecture, mise à jour et suppression d'utilisateurs.
-    * Chaque users possède les attributs : `id` (entier), `name` (chaîne), `email` (str).
+    * Chaque users possède les attributs : `id` (entier), `name` (str), `email` (str).
 * **Endpoints :**
     * `GET /users` : Liste tous les utilisateurs.
     * `GET /users/{id}` : Affiche un utilisateur spécifique.
