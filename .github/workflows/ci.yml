@@ -26,6 +26,7 @@ jobs:
 
     - name: Run tests
       run: |
+        export PYTHONPATH=.
         pytest
 
 #    - name: Run Bandit security audit
