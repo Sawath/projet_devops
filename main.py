@@ -21,7 +21,7 @@ class Item(BaseModel):
 
 class User(BaseModel):
     id: int
-    username: str
+    name: str
     email: str
 
 

@@ -68,3 +68,65 @@ def test_delete_item():
     # Vérifie que l'item a été bien supprimé
     response = client.get("/items/1")
     assert response.status_code == 404
+
+
+# Test pour récupérer la liste des utilisateurs
+def test_get_users():
+    response = client.get("/users")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
+
+
+# Test pour créer un utilisateur
+def test_create_user():
+    response = client.post(
+        "/users/",
+        json={"id": 1, "name": "Alice", "email": "alice@example.com"}
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 1,
+        "name": "Alice",
+        "email": "alice@example.com"
+    }
+
+
+# Test pour récupérer un utilisateur spécifique
+def test_get_user():
+    # On s'assure que l'utilisateur existe
+    client.post(
+        "/users/",
+        json={"id": 2, "name": "Bob", "email": "bob@example.com"}
+    )
+    response = client.get("/users/2")
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 2,
+        "name": "Bob",
+        "email": "bob@example.com"
+    }
+
+
+# Test pour mettre à jour un utilisateur
+def test_update_user():
+    response = client.put(
+        "/users/2",
+        json={"id": 2, "name": "Bob Updated", "email": "bob@example.com"}
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 2,
+        "name": "Bob Updated",
+        "email": "bob@example.com"
+    }
+
+
+# Test pour supprimer un utilisateur
+def test_delete_user():
+    response = client.delete("/users/2")
+    assert response.status_code == 200
+    assert response.json() == {"message": "User deleted"}
+
+    # Vérifie que l'utilisateur a bien été supprimé
+    response = client.get("/users/2")
+    assert response.status_code == 404
